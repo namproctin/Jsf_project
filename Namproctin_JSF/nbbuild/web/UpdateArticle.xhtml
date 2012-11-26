@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" ></meta>
+
+        <title>Piccolo Theme</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+
+
+        <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'></link>
+        <link rel="stylesheet" href="css/bootstrap.css"></link>
+        <link rel="stylesheet" href="css/bootstrap-responsive.css"></link>
+        <link rel="stylesheet" href="css/jquery.lightbox-0.5.html"></link>
+        <link rel="stylesheet" href="css/custom-styles.css"></link>
+
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+            <link rel="stylesheet" href="css/style-ie.css"/>
+        <![endif]-->
+
+
+        <link rel="shortcut icon" href="img/favicon.ico"></link>
+        <link rel="apple-touch-icon" href="img/apple-touch-icon.png"></link>
+        <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png"></link>
+        <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png"></link>
+
+
+        <h:outputScript library="js" name="bootstrap.js"/>
+
+        <h:outputScript library="primefaces" name="jquery/jquery.js" />
+       <!-- <script src="js/jquery.custom.js"></script>-->
+
+
+    </h:head>
+
+    <h:body>
+        <div align="center">
+            <h:form rendered="#{userSession.isLogin}">
+                
+                You are #{userSession.username}
+                <br/>
+
+                Article header: <h:inputText  value="#{userSession.updateArticleTitle}"></h:inputText><br/>
+
+                Article content:<br/>
+
+                <p:editor  width="800" height="800" value="#{userSession.updateArticleContent}"></p:editor><br/>
+                <h:commandButton value="Update Article" action="#{userSession.doUpdateArticle}" >
+                    <f:param name="articledate" value="#{userSession.updateDate}"></f:param>
+                </h:commandButton>
+            </h:form>
+            <h:form rendered="#{!userSession.isLogin}">
+                Please login first !
+                <h:link value="Return home" outcome="HomePage"></h:link>
+            </h:form>
+        </div>
+
+
+    </h:body>
+</html>
